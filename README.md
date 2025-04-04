@@ -1,43 +1,125 @@
-# Teamups Technical Exercise (back-end focus)
+# Food Delivery app Setup Guide & API Documentation
 
-## Intro
+## Clone the Repository
 
-Introduction video: https://drive.google.com/file/d/1KlPYZfZEVaBqDU0AbiXGgz_zmAV-Lhl3/view?usp=drive_link
+Clone this repository to your local machine:
 
-Built with `create-next-app`, this is a NextJS food delivery-related app for real-time streaming.
-
-![LMWN assessment screenshot](https://teamupsgeneral.blob.core.windows.net/teamupspublic/sr-backend-assessment/LMWN%20assessment%20screenshot%20-%20order%20tracker.png)
-
-## Quick start
-
-1. Clone the repo: `git clone {REPO_URL}`
-
-2. CD into the repo: `cd /path/to/repo`
-
-3. Install dependencies: `npm install`
-
-4. [Option 1: Docker] Start via docker compose: `docker-compose up` ([walkthrough video](https://drive.google.com/file/d/1KxLL6f6pW1WPBKgm6TxHHyO4Io1OAkXd/view?usp=drive_link)). [Option 2: NPM] Create a `.env` file at the root level of the repo with the following contents: "MONGODB_URI=mongodb://localhost:27017/order-tracker". Run MongoDB locally on the default port, then start the app via `npm run dev` ([walkthrough video](https://drive.google.com/file/d/1IKbLUl06zIXee_g8XQOx15vj4tRc9F7e/view?usp=drive_link)).
-
-5. Once running, visit `http://localhost:3000/` to load the app--the first load might be slow. You should see the following page if everything is successful.
-![LMWN assessment screenshot - home](https://teamupsgeneral.blob.core.windows.net/teamupspublic/sr-backend-assessment/LMWN%20assessment%20screenshot%20-%20home.png)
-
-6. Click on the "Create seed" button to bootstrap the drivers data once you are ready.
-
-## Sample git workflow
-
-Here is a sample flow for making changes and submitting a PR after completing the exercise:
-
+```bash
+git clone {REPO_URL}
 ```
-// check out a new branch for your changes
-git checkout -b {BRANCH_NAME}
 
-// make changes and commit them
-git add --all
-git commit
+## Installation With docker
 
-// push new branch up to GitHub
-git push origin {BRANCH_NAME}
-
-// use GitHub to make PR
-// (DO NOT MERGE PR)
+```bash
+docker-compose up
 ```
+
+## Installation Without docker
+
+### Install Python
+
+Before proceeding, make sure you have Python installed on your system. You can download and install the latest version of Python from the [official Python website](https://www.python.org/downloads/).
+
+### Install Required Packages
+
+```bash
+cd server
+pip install -r requirements.txt
+```
+
+### Default Mongo DB URL
+
+#### Url can be recplaced in .env file
+
+```bash
+MONGODB_URI=mongodb://localhost:27017/order-tracker
+```
+
+### Serving
+
+```bash
+python app.py
+```
+
+## Import Postman Collection to run
+
+#### Paste your serving url in collection variable
+
+![Postman](./demo/postman_environment_url.png)
+
+#### You will find all the api inside the collections
+
+![Postman](./demo/postman_requests.png)
+
+# High-level Flow Chart
+
+![Postman](./demo/flowchart.png)
+
+### The following API allows users to place orders, retrieve order details, and cancel orders.
+
+## Endpoints
+
+### Place Order
+
+- **URL:** `/place_order`
+- **Method:** `POST`
+- **Description:** Creates a new order and assigns an available driver if found, otherwise queues the order for future assignment.
+- **Request Body:** None
+- **Response:**
+  - Success: Returns JSON with order details and assigned driver if available.
+  - Failure: Returns appropriate error message.
+
+---
+
+### Get Order Details
+
+- **URL:** `/order/<order_id>`
+- **Method:** `GET`
+- **Description:** Retrieves details of a specific order identified by its ID.
+- **Request Parameters:**
+  - `order_id` (string): Unique identifier for the order.
+- **Response:**
+  - Success: Returns JSON with order details.
+  - Failure: Returns appropriate error message if the order is not found.
+
+---
+
+### Cancel Order
+
+- **URL:** `/order/<order_id>`
+- **Method:** `DELETE`
+- **Description:** Cancels a pending order. If the order is already completed, returns an error message.
+- **Request Parameters:**
+  - `order_id` (string): Unique identifier for the order.
+- **Response:**
+  - Success: Returns a message confirming the cancellation of the order.
+  - Failure: Returns appropriate error message if the order is not found or already completed.
+
+---
+
+### Get Drivers
+
+- **URL:** `/drivers`
+- **Method:** `GET`
+- **Description:** Retrieves the list of available drivers.
+- **Response:**
+  - Success: Returns JSON with the list of available drivers.
+  - Failure: Returns appropriate error message if there are no available drivers or an error occurs.
+
+---
+
+## User Story
+
+- Each order will be allocated a time window of n seconds, where n ranges from 10 to 60 seconds.
+- The system swiftly assigns a driver and processes the order in the background, providing the user with a success notification so they can proceed with placing additional orders.
+- If a driver isn't immediately available, the system informs the user that their order is in the queue. Once a driver is located, the order will be dispatched promptly.
+- In the event that a driver isn't found within 2 minutes, the system will automatically cancel the order.
+- Users also have the option to cancel their own orders.
+
+## Error Handling
+
+- If an error occurs during any request, an appropriate error message is returned along with an HTTP status code indicating the type of error.
+
+## Notes
+
+- All responses are in JSON format.
