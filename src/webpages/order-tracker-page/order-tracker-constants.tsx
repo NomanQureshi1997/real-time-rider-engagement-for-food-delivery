@@ -1,2 +1,0 @@
-export const PROGRESS_BAR_HEIGHT = 20;
-export const PROGRESS_BAR_MAX_WIDTH_PERCENT = 0.5;
