@@ -1,0 +1,323 @@
+{
+  "info": {
+    "_postman_id": "b0c86d54-97e0-4acf-b144-ed65f6691253",
+    "name": "Food Delivery App",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "15954821",
+    "_collection_link": "https://www.postman.com/galactic-moon-771475/workspace/feedback/collection/15954821-b0c86d54-97e0-4acf-b144-ed65f6691253?action=share&source=collection_link&creator=15954821"
+  },
+  "item": [
+    {
+      "name": "Place an order",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {
+          "content-type": true
+        }
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "{{url}}/place_order",
+          "host": ["{{url}}"],
+          "path": ["place_order"]
+        }
+      },
+      "response": [
+        {
+          "name": "No driver is avaiable resonse",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
+            "url": {
+              "raw": "{{url}}/place_order",
+              "host": ["{{url}}"],
+              "path": ["place_order"]
+            }
+          },
+          "status": "CREATED",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.0.1 Python/3.12.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 17 Feb 2024 11:05:26 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "142"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"driver_id\": \"\",\n    \"error\": false,\n    \"message\": \"Order placed successfully\",\n    \"order_id\": \"65d092f6b83d4e6f8be442b7\",\n    \"queued\": true\n}"
+        },
+        {
+          "name": "Avaiable driver response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
+            "url": {
+              "raw": "{{url}}/place_order",
+              "host": ["{{url}}"],
+              "path": ["place_order"]
+            }
+          },
+          "status": "CREATED",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.0.1 Python/3.12.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 17 Feb 2024 11:40:49 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "167"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"driver_id\": \"65d001c58de2aa7c6fe50fe8\",\n    \"error\": false,\n    \"message\": \"Order placed successfully\",\n    \"order_id\": \"65d09b41884452159546b89c\",\n    \"queued\": false\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Order",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/order/65d092f6b83d4e6f8be442b7",
+          "host": ["{{url}}"],
+          "path": ["order", "65d092f6b83d4e6f8be442b7"]
+        }
+      },
+      "response": [
+        {
+          "name": "Get Order response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/order/65d092f6b83d4e6f8be442b7",
+              "host": ["{{url}}"],
+              "path": ["order", "65d092f6b83d4e6f8be442b7"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.0.1 Python/3.12.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 17 Feb 2024 11:41:33 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "268"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"_id\": \"65d092f6b83d4e6f8be442b7\",\n    \"created_at\": \"Sat, 17 Feb 2024 11:05:26 GMT\",\n    \"driver\": \"65d001c58de2aa7c6fe50fe8\",\n    \"name\": \"A new Order\",\n    \"status\": \"completed\",\n    \"total_steps\": 9,\n    \"total_time\": 38,\n    \"updated_at\": \"Sat, 17 Feb 2024 11:05:26 GMT\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Cancel Order",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/order/65d092b7b83d4e6f8be442b3",
+          "host": ["{{url}}"],
+          "path": ["order", "65d092b7b83d4e6f8be442b3"]
+        }
+      },
+      "response": [
+        {
+          "name": "Cancel Order response",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/order/65d092b7b83d4e6f8be442b3",
+              "host": ["{{url}}"],
+              "path": ["order", "65d092b7b83d4e6f8be442b3"]
+            }
+          },
+          "status": "NOT FOUND",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.0.1 Python/3.12.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 17 Feb 2024 11:04:56 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "68"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"Order 65d092b7b83d4e6f8be442b3 has been canceled\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Drivers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/drivers",
+          "host": ["{{url}}"],
+          "path": ["drivers"]
+        }
+      },
+      "response": [
+        {
+          "name": "Get drivers response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/drivers",
+              "host": ["{{url}}"],
+              "path": ["drivers"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "html",
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.0.1 Python/3.12.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 17 Feb 2024 11:06:51 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/html; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "607"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "[{\"_id\": {\"$oid\": \"65d001c58de2aa7c6fe50fe8\"}, \"home_location_point\": {\"type\": \"Point\", \"coordinates\": [-85.73003841859936, 16.04919710762124]}, \"available_status\": true, \"driving_radius_miles\": 2.1}, {\"_id\": {\"$oid\": \"65d001c58de2aa7c6fe50fe9\"}, \"home_location_point\": {\"type\": \"Point\", \"coordinates\": [-35.32629806468678, -105.57986040293767]}, \"available_status\": true, \"driving_radius_miles\": 0.55}, {\"_id\": {\"$oid\": \"65d001c58de2aa7c6fe50fea\"}, \"home_location_point\": {\"type\": \"Point\", \"coordinates\": [-51.450634748675064, -136.70757701308045]}, \"available_status\": true, \"driving_radius_miles\": 9.54}]"
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "url",
+      "value": "http://127.0.0.1:5000",
+      "type": "string"
+    }
+  ]
+}
